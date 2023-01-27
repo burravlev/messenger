@@ -15,7 +15,7 @@ public class MessageDto {
     private String content;
     private String sender;
     private String receiver;
-    private String chatId;
+    private Long chatId;
     private LocalDateTime sent;
 
     public MessageDto(Message message) {

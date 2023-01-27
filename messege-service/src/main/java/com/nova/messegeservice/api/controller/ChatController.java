@@ -1,6 +1,7 @@
 package com.nova.messegeservice.api.controller;
 
 import com.nova.messegeservice.api.dto.chat.ChatDto;
+import com.nova.messegeservice.api.dto.chat.ChatPreview;
 import com.nova.messegeservice.api.dto.chat.ChatRequest;
 import com.nova.messegeservice.service.chat.ChatService;
 import lombok.RequiredArgsConstructor;

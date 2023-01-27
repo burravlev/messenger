@@ -1,30 +1,25 @@
 package com.nova.messegeservice.api.dto.chat;
 
-import com.nova.messegeservice.api.dto.message.MessageDto;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.nova.messegeservice.model.Chat;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
-@NoArgsConstructor
 @Getter
 @Setter
-public class ChatDto {
+@NoArgsConstructor
+public class ChatPreview {
     private Long id;
     private String receiver;
-    private List<MessageDto> messages;
+    @JsonProperty("last_message")
+    private String lastMessage;
 
-    public ChatDto(String sender, Chat chat) {
+    public ChatPreview(String sender, Chat chat, String lastMessage) {
         this.id = chat.getId();
         this.receiver = sender.equals(chat.getSender()) ?
                 chat.getReceiver() :
                 chat.getSender();
-    }
-
-    public ChatDto(String sender, Chat chat, List<MessageDto> messages) {
-        this(sender, chat);
-        this.messages = messages;
+        this.lastMessage = lastMessage;
     }
 }

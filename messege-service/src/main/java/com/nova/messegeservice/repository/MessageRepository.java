@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 public interface MessageRepository extends JpaRepository<Message, Long> {
-    @Query("from Message m where m.chatId = :chatId order by m.sent asc ")
-    Page<Message> findByChatId(String chatId, Pageable pageable);
+    @Query("from Message m where m.chatId = :chatId order by m.sent desc")
+    Page<Message> findByChatId(Long chatId, Pageable pageable);
 }

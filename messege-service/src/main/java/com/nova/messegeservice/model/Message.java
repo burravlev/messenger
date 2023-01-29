@@ -17,7 +17,7 @@ public class Message {
     private String sender;
     private String receiver;
     @Column(name="chat_id")
-    private String chatId;
+    private Long chatId;
     private LocalDateTime sent;
 
     public Message() {
@@ -28,12 +28,16 @@ public class Message {
             String content,
             String sender,
             String receiver,
-            String chatId
+            Long chatId
     ) {
         this();
         this.content = content;
         this.sender = sender;
         this.receiver = receiver;
         this.chatId = chatId;
+    }
+
+    public Message(String content) {
+        this.content = content;
     }
 }

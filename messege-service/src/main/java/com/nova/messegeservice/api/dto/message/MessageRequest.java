@@ -12,7 +12,7 @@ public class MessageRequest {
     private String content;
     private String sender;
     private String receiver;
-    private String chatId;
+    private Long chatId;
 
     public Message toEntity() {
         return new Message(

@@ -9,16 +9,19 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @Service
 @RequiredArgsConstructor
 public class MessageServiceImpl implements MessageService {
-    private SimpMessagingTemplate messagingTemplate;
-    private ChatRepository chatRepository;
-    private MessageRepository messageRepository;
+    private final SimpMessagingTemplate messagingTemplate;
+    private final ChatRepository chatRepository;
+    private final MessageRepository messageRepository;
 
     @Override
     public MessageDto send(MessageRequest request) {
         Message message = messageRepository.save(request.toEntity());
+        chatRepository.updateDate(LocalDateTime.now(), message.getChatId());
         MessageDto dto = new MessageDto(message);
         messagingTemplate.convertAndSendToUser(message.getReceiver(), "/private", dto);
         return dto;
